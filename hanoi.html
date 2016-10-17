@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Hanoi</title>
+		<script type="text/javascript">
+			var tower1 = [], tower2 = [], tower3 = [];
+			var n = 3;	// Nº de discos
+			var c = 1;	// Contador de movimientos
+
+			initTowers();
+			show();
+			hanoi(n, tower1, tower2, tower3);
+			 
+			function hanoi(n, ori, aux, des) {				
+				if(n === 1) {
+					mov(ori, des);					
+				}					
+			 	else {
+					hanoi(n - 1, ori, des, aux);
+					mov(ori, des);
+					hanoi(n - 1, aux, ori, des);					
+				}
+			}
+
+			function mov(ori, des) { 
+				des.push(ori.pop());
+				show();
+			}
+
+			function initTowers() {		// "Carga" tower1 con los discos
+				for(var i = 0; i < n; i++) {
+					tower1.push(n - i);
+				}
+			}
+
+			function show() {	// Muestra movimientos y estado
+				console.log("-+-+-+-+- " + c +" -+-+-+-+-");
+				console.log(tower1);
+				console.log(tower2);
+				console.log(tower3);
+				
+				c++;
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
